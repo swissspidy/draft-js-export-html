@@ -1,0 +1,24 @@
+# Built-in element using alternate tag
+{"inlineStyles":{"BOLD":{"element":"b"}}}
+{"entityMap":{},"blocks":[{"key":"99n0j","text":"asdf","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":3,"length":1,"style":"BOLD"}],"entityRanges":[]}]}
+<p>asd<b>f</b></p>
+
+# Built-in element with all fields specified
+{"inlineStyles":{"ITALIC":{"element":"i","attributes":{"className":"foo"},"style":{"textDecoration":"underline"}}}}
+{"entityMap":{},"blocks":[{"key":"99n0j","text":"asdf","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":3,"length":1,"style":"ITALIC"}],"entityRanges":[]}]}
+<p>asd<i class="foo" style="text-decoration: underline">f</i></p>
+
+# Custom element with only style specified
+{"inlineStyles":{"RED":{"style":{"fontSize":"12","color":"red"}}}}
+{"entityMap":{},"blocks":[{"key":"99n0j","text":"asdf","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":3,"length":1,"style":"RED"}],"entityRanges":[]}]}
+<p>asd<span style="font-size: 12px; color: red">f</span></p>
+
+# Custom element with all fields specified
+{"inlineStyles":{"FOO":{"element":"s","attributes":{"class":"foo"},"style":{"lineHeight":1}}}}
+{"entityMap":{},"blocks":[{"key":"99n0j","text":"asdf","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":3,"length":1,"style":"FOO"}],"entityRanges":[]}]}
+<p>asd<s class="foo" style="line-height: 1">f</s></p>
+
+# Entity with a custom inline style
+{"inlineStyles":{"RED":{"style":{"color":"red"}}}}
+{"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"/"}}},"blocks":[{"key":"8r91j","text":"a","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":1,"style":"RED"}],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}
+<p><a href="/"><span style="color: red">a</span></a></p>
