@@ -24,7 +24,7 @@
     "immutable": "3.x.x"
   },
   "devDependencies": {
-    "@types/draft-js": "^0.7.33"
+    "@types/draft-js": "0.7.35"
   },
   "keywords": [
     "draft-js",
