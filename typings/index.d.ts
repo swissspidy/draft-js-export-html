@@ -2,6 +2,7 @@
 
 declare module 'draft-js-export-html' {
     import draftjs = require("draft-js");
+    import Immutable = require("immutable");
 
     type BlockStyleFn = (block: draftjs.ContentBlock) => RenderConfig|undefined;
     type EntityStyleFn = (entity: draftjs.EntityInstance) => RenderConfig|undefined;
@@ -18,6 +19,7 @@ declare module 'draft-js-export-html' {
         blockRenderers?: { [blockType: string]: BlockRenderer };
         blockStyleFn?: BlockStyleFn;
         entityStyleFn?: EntityStyleFn;
+        inlineStyleFn?: (styles: Immutable.OrderedSet<string>) => RenderConfig;
     }
 
     export function stateToHTML(content: draftjs.ContentState, options?: Options): string;
