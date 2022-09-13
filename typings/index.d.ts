@@ -19,7 +19,7 @@ declare module 'draft-js-export-html' {
         blockRenderers?: { [blockType: string]: BlockRenderer };
         blockStyleFn?: BlockStyleFn;
         entityStyleFn?: EntityStyleFn;
-        inlineStyleFn?: (styles: Immutable.OrderedSet<string>) => RenderConfig;
+        inlineStyleFn?: (styles: Immutable.OrderedSet<string>) => RenderConfig | null;
     }
 
     export function stateToHTML(content: draftjs.ContentState, options?: Options): string;
