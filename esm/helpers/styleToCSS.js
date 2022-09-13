@@ -1,14 +1,9 @@
-// @flow
-
-type StyleDescr = {[key: string]: number | string};
-
-const VENDOR_PREFIX = /^(moz|ms|o|webkit)-/;
-const NUMERIC_STRING = /^\d+$/;
-const UPPERCASE_PATTERN = /([A-Z])/g;
-
-// Lifted from:
+var VENDOR_PREFIX = /^(moz|ms|o|webkit)-/;
+var NUMERIC_STRING = /^\d+$/;
+var UPPERCASE_PATTERN = /([A-Z])/g; // Lifted from:
 // https://github.com/facebook/react/blob/ab4ddf64939aebbbc8d31be1022efd56e834c95c/src/renderers/dom/shared/CSSProperty.js
-const isUnitlessNumber = {
+
+var isUnitlessNumber = {
   animationIterationCount: true,
   borderImageOutset: true,
   borderImageSlice: true,
@@ -49,26 +44,24 @@ const isUnitlessNumber = {
   strokeDashoffset: true,
   strokeMiterlimit: true,
   strokeOpacity: true,
-  strokeWidth: true,
-};
+  strokeWidth: true
+}; // Lifted from: https://github.com/facebook/react/blob/master/src/renderers/dom/shared/CSSPropertyOperations.js
 
-// Lifted from: https://github.com/facebook/react/blob/master/src/renderers/dom/shared/CSSPropertyOperations.js
-function processStyleName(name: string): string {
-  return name
-    .replace(UPPERCASE_PATTERN, '-$1')
-    .toLowerCase()
-    .replace(VENDOR_PREFIX, '-$1-');
-}
+function processStyleName(name) {
+  return name.replace(UPPERCASE_PATTERN, '-$1').toLowerCase().replace(VENDOR_PREFIX, '-$1-');
+} // Lifted from: https://github.com/facebook/react/blob/master/src/renderers/dom/shared/dangerousStyleValue.js
 
-// Lifted from: https://github.com/facebook/react/blob/master/src/renderers/dom/shared/dangerousStyleValue.js
-function processStyleValue(name: string, value: number | string): string {
-  let isNumeric;
+
+function processStyleValue(name, value) {
+  var isNumeric;
+
   if (typeof value === 'string') {
     isNumeric = NUMERIC_STRING.test(value);
   } else {
     isNumeric = true;
     value = String(value);
   }
+
   if (!isNumeric || value === '0' || isUnitlessNumber[name] === true) {
     return value;
   } else {
@@ -76,14 +69,12 @@ function processStyleValue(name: string, value: number | string): string {
   }
 }
 
-function styleToCSS(styleDescr: StyleDescr): string {
-  return Object.keys(styleDescr)
-    .map((name) => {
-      let styleValue = processStyleValue(name, styleDescr[name]);
-      let styleName = processStyleName(name);
-      return `${styleName}: ${styleValue}`;
-    })
-    .join('; ');
+function styleToCSS(styleDescr) {
+  return Object.keys(styleDescr).map(function (name) {
+    var styleValue = processStyleValue(name, styleDescr[name]);
+    var styleName = processStyleName(name);
+    return "".concat(styleName, ": ").concat(styleValue);
+  }).join('; ');
 }
 
 export default styleToCSS;
